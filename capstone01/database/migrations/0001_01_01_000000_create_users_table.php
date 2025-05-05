@@ -17,7 +17,7 @@ return new class extends Migration
             $table->float('weight')->nullable();
             $table->float('height')->nullable();
             $table->string('activity_level', 50)->nullable();
-            $table->string('status', 20)->nullable();
+            $table->string('status', 20)->default('active');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
