@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - GiziSmart</title>
+    <title>Dashboard - GiziSmart</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <h1 class="text-xl font-bold">GiziSmart</h1>
             <div class="space-x-4">
-                <a href="{{ url('/') }}" class="hover:underline">Home</a>
+                <a href="{{ url('/') }}" class="hover:underline">Dashboard</a>
                 <a href="{{ url('/informasi-gizi') }}" class="hover:underline">Informasi Gizi</a>
                 <a href="{{ url('/hitung-gizi') }}" class="hover:underline">Hitung Gizi</a>
                 <a href="{{ url('/riwayat') }}" class="hover:underline">Riwayat</a>
@@ -22,7 +22,7 @@
         </div>
     </nav>
 
-    <!-- Konten Home -->
+    <!-- Konten Dashboard -->
     <main class="pt-24 px-4 flex flex-col items-center flex-grow">
         <h1 class="text-4xl font-bold text-blue-700 mb-6 text-center">Selamat Datang di GiziSmart</h1>
 
