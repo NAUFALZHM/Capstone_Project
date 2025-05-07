@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('username', 50)->nullable();
+            $table->enum('gender',['male','female'])->nullable();
             $table->integer('age')->nullable();
             $table->float('weight')->nullable();
             $table->float('height')->nullable();
