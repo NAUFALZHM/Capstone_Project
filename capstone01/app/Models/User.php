@@ -20,17 +20,16 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $primaryKey = 'id';
-    
     protected $fillable = [
         'name',
-        'email',
-        'username',
-        'password',
-        'age',
-        'weight',
-        'height',
-        'activity_level',
-        'status',
+    'email',
+    'username',
+    'gender',
+    'age',
+    'weight',
+    'height',
+    'activity_level',
+    'password',
     ];
     public function admin()
     {

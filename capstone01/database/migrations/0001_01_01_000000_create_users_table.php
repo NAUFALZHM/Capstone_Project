@@ -13,11 +13,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('username', 50)->nullable();
+            $table->enum('gender', ['male','female'])->nullable();
             $table->integer('age')->nullable();
             $table->float('weight')->nullable();
             $table->float('height')->nullable();
             $table->string('activity_level', 50)->nullable();
-            $table->string('status', 20)->default('active');
+            $table->string('status', 20)->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
