@@ -17,11 +17,22 @@
         </div>
         
         <div class="mt-4">
-            <x-input-label for="username" :value="__('Email')" />
+            <x-input-label for="username" :value="__('Username')" />
             <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-        
+
+        {{-- gender --}}
+        <div class="mt-4">
+            <x-input-label for="gender" :value="__('Gender')" />
+            <select name="gender" id="gender" class="block mt-1 w-full">
+                <option value="" disabled selected>Pilih Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+        </div>
+
         <!-- age -->
         <div class="mt-4">
             <x-input-label for="age" :value="__('age')" />
@@ -31,14 +42,14 @@
 
         <!-- weight -->
         <div class="mt-4">
-            <x-input-label for="weight" :value="__('weight')" />
+            <x-input-label for="weight" :value="__('weight (kg)')" />
             <x-text-input id="weight" class="block mt-1 w-full" type="number" name="weight" min="1" max="350" :value="old('weight')" required autocomplete="weight" />
             <x-input-error :messages="$errors->get('weight')" class="mt-2" />
         </div>
 
         <!-- height-->
         <div class="mt-4">
-            <x-input-label for="height" :value="__('height')" />
+            <x-input-label for="height" :value="__('height (cm)')" />
             <x-text-input id="height" class="block mt-1 w-full" type="number" name="height" min="1" max="300" :value="old('height')" required autocomplete="height" />
             <x-input-error :messages="$errors->get('height')" class="mt-2" />
         </div>
@@ -47,8 +58,10 @@
         <div class="mt-4">
             <x-input-label for="activity_level" :value="__('activity_level')" />
             <select name="activity_level" id="activity">
+                <option value="" disabled selected>Pilih Level Aktivitas</option>
                 <option value="ringan">Ringan</option>
                 <option value="sedang">Sedang</option>
+                <option value="tinggi">Tinggi</option>
             </select>
         <x-input-error :messages="$errors->get('activity_level')" class="mt-2" />
         </div>
