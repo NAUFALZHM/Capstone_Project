@@ -15,7 +15,7 @@
             <div class="space-x-4">
                 <a href="{{ url('/') }}" class="hover:underline">Home</a>
                 <a href="{{ url('/informasi-gizi') }}" class="hover:underline">Informasi Gizi</a>
-                <a href="{{ url('/hitung-gizi') }}" class="underline font-semibold">Hitung Gizi</a>
+                <a href="{{ url('/hitung_gizi') }}" class="underline font-semibold">Hitung Gizi</a>
                 <a href="{{ url('/riwayat') }}" class="hover:underline">Riwayat</a>
                 <a href="{{ url('/profil') }}" class="hover:underline">Profil</a>
             </div>
@@ -30,7 +30,7 @@
             
             <div class="bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-2xl font-bold mb-4">Hitung Gizi Anda</h2>
-                <form method="POST" action="{{ url('/hitung-gizi') }}">
+                <form method="POST" action="{{ url('/gizi') }}">
                     @csrf
                     <!-- Usia -->
                     <div class="mb-4">
@@ -78,7 +78,7 @@
                     <button type="submit" class="bg-blue-500 text-white w-full p-2 rounded hover:bg-blue-600">Hitung</button>
                 </form>
                 
-                {{-- <form>
+                <!-- {{-- <form>
                     <div class="mb-4">
                         <label class="block mb-1 font-semibold">Usia (tahun):</label>
                         <input type="number" class="w-full p-2 border rounded" placeholder="Masukkan usia Anda">
@@ -100,7 +100,7 @@
                         </select>
                     </div>
                     <button type="submit" class="bg-blue-500 text-white w-full p-2 rounded hover:bg-blue-600">Hitung</button>
-                </form> --}}
+                </form> --}} -->
             </div>
 
             <!-- Hasil -->

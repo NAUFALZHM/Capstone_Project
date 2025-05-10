@@ -9,12 +9,12 @@ class GiziController extends Controller
 {
     public function showForm()
     {
-        return view('hitung-gizi');
+        return view('hitung_gizi');
     }
 
     public function hitung(Request $request)
     {
-        // $user = Auth::user();
+        $user = Auth::user();
 
         $validated = $request->validate([
             'age' => 'required|numeric|min:1',
@@ -26,19 +26,15 @@ class GiziController extends Controller
 
         // $user->update($validated);
 
-        // $calories = $user->calculateCalories();
-        // $imt = $user->calculateIMT();
-        // $statusGizi = $user->statusGizi();
-
         $calories = $this->calculateCalories($validated);
         $imt = $this->calculateIMT($validated);
         $statusGizi = $this->statusGizi($imt);
 
-        // if ($calories === null || $imt === null || $statusGizi === null) {
-        //     return back()->withErrors(['error' => 'Data tidak lengkap untuk menghitung kalori, IMT, atau status gizi.']);
-        // }
+        if ($calories === null || $imt === null || $statusGizi === null) {
+            return back()->withErrors(['error' => 'Data tidak lengkap untuk menghitung kalori, IMT, atau status gizi.']);
+        }
 
-        return view('hitung-gizi', [
+        return view('hitung_gizi', [
             'kalori' => $calories,
             'imt' => $imt,
             'status_gizi' => $statusGizi,
