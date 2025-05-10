@@ -2,16 +2,20 @@
 
 use App\Http\Controllers\GiziController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InformasiController;
 
 Route::get('/', function () {
     return view('welcome');
 })->middleware(['auth','verified']);
 
-Route::get('/gizi',[GiziController::class,'showForm']);
+Route::get('/gizi',[GiziController::class,'showForm'])->middleware(['auth','verified']);
+Route::post('/gizi',[GiziController::class,'hitung'])->middleware(['auth','verified']);
+Route::get('/informasi',[InformasiController::class,'showInfo'])->middleware(['auth','verified']);
+Route::post('/informasi',[InformasiController::class,'showInfo'])->middleware(['auth','verified']);
 
 
-Route::post('/gizi',[GiziController::class,'hitung']);
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

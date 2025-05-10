@@ -30,7 +30,7 @@
         </p>
 
         <!-- Form Pencarian -->
-        <form action="{{ url('/informasi-gizi') }}" method="GET" class="flex justify-center w-full max-w-xl mb-6">
+        <form action="{{ url('/informasi') }}" method="GET" class="flex justify-center w-full max-w-xl mb-6">
             <input type="text" name="search" placeholder="Cari informasi gizi..." class="px-4 py-2 border rounded-l-lg w-full focus:outline-none text-black">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600">Cari</button>
         </form>
