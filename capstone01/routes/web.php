@@ -2,19 +2,26 @@
 
 use App\Http\Controllers\GiziController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RiwayatController;
 use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InformasiController;
 
+// middleware kalau ingin akses index blm bisa klo blm login
 Route::get('/', function () {
     return view('welcome');
-})->middleware(['auth','verified']);
+})->middleware(['auth', 'verified']);
 
-Route::get('/gizi',[GiziController::class,'showForm'])->middleware(['auth','verified']);
-Route::post('/gizi',[GiziController::class,'hitung'])->middleware(['auth','verified']);
-Route::get('/informasi',[InformasiController::class,'showInfo'])->middleware(['auth','verified']);
-Route::post('/informasi',[InformasiController::class,'showInfo'])->middleware(['auth','verified']);
+// akses fungsi IMT
+Route::get('/gizi', [GiziController::class, 'showForm'])->middleware(['auth', 'verified']);
+Route::post('/gizi', [GiziController::class, 'hitung'])->middleware(['auth', 'verified']);
 
+// akses fungsi pencarian informasi gizi makanan
+Route::get('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified']);
+Route::post('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified']);
+
+// akses riwayat
+Route::get('/riwayat', [RiwayatController::class, 'riwayat'])->middleware((['auth', 'verified']));
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -36,4 +43,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

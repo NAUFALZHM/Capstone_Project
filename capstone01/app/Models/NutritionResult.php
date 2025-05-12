@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -6,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class NutritionResult extends Model
 {
     protected $primaryKey = 'result_id';
-    protected $fillable = ['daily_calories', 'recommendations', 'date', 'user_id'];
+    protected $fillable = ['kebutuhan_kalori_harian', 'IMT', 'status_gizi', 'date', 'user_id'];
 
     public function user()
     {

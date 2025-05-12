@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Models\NutritionResult;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -32,6 +34,13 @@ class GiziController extends Controller
 
         if ($calories === null || $imt === null || $statusGizi === null) {
             return back()->withErrors(['error' => 'Data tidak lengkap untuk menghitung kalori, IMT, atau status gizi.']);
+        } else {
+            NutritionResult::create([
+                'user_id' => $user->id, // pastikan user sudah login
+                'kebutuhan_kalori_harian' => $calories,
+                'IMT' => $imt,
+                'status_gizi' => $statusGizi,
+            ]);
         }
 
         return view('hitung_gizi', [
