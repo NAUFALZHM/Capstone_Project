@@ -14,8 +14,8 @@
             <h1 class="text-xl font-bold">GiziSmart</h1>
             <div class="space-x-4">
                 <a href="{{ url('/') }}" class="hover:underline">Home</a>
-                <a href="{{ url('/informasi-gizi') }}" class="hover:underline">Informasi Gizi</a>
-                <a href="{{ url('/hitung-gizi') }}" class="hover:underline">Hitung Gizi</a>
+                <a href="{{ url('/informasi') }}" class="hover:underline">Informasi Gizi</a>
+                <a href="{{ url('/gizi') }}" class="hover:underline">Hitung Gizi</a>
                 <a href="{{ url('/riwayat') }}" class="hover:underline">Riwayat</a>
                 <a href="{{ url('/profil') }}" class="underline font-semibold">Profil</a>
             </div>
