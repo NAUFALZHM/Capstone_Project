@@ -35,9 +35,7 @@
                     <!-- Usia -->
                     <div class="mb-4">
                         <label class="block mb-1 font-semibold">Usia (tahun):</label>
-                        {{-- <input type="number" name="age" class="w-full p-2 border rounded" value="{{ old('age', auth()->user()->age) }}"> --}}
-                        <input type="number" name="age" class="w-full p-2 border rounded" value="{{ old('age') }}">
-
+                        <input type="number" name="age" class="w-full p-2 border rounded" value={{ old('age', auth()->user()->age) }}> 
                     </div>
                     <!-- Gender -->
                     <div class="mb-4">
@@ -53,14 +51,12 @@
                     <!-- Berat -->
                     <div class="mb-4">
                         <label class="block mb-1 font-semibold">Berat Badan (kg):</label>
-                        {{-- <input type="number" name="weight" class="w-full p-2 border rounded" value="{{ old('weight', auth()->user()->weight) }}"> --}}
-                        <input type="number" name="weight" class="w-full p-2 border rounded" value="{{ old('weight') }}">
+                        <input type="number" name="weight" class="w-full p-2 border rounded" value={{ old('weight', auth()->user()->weight) }}> 
                     </div>
                     <!-- Tinggi -->
                     <div class="mb-4">
                         <label class="block mb-1 font-semibold">Tinggi Badan (cm):</label>
-                        {{-- <input type="number" name="height" class="w-full p-2 border rounded" value="{{ old('height', auth()->user()->height) }}"> --}}
-                        <input type="number" name="height" class="w-full p-2 border rounded" value="{{ old('height') }}">
+                        <input type="number" name="height" class="w-full p-2 border rounded" value={{ old('height', auth()->user()->height) }}> 
                     </div>
                     <!-- Aktivitas -->
                     <div class="mb-6">
