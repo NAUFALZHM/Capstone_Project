@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
         );
 
         // Panggil seeder untuk data makanan dan nutrisi
-        $this->call([
-            NutrientSeeder::class,
-            FoodDataSeeder::class,
-            FoodNutrientSeeder::class,
-        ]);
+        // $this->call([
+        //     NutrientSeeder::class,
+        //     FoodDataSeeder::class,
+        //     FoodNutrientSeeder::class,
+        // ]);
     }
 
 }

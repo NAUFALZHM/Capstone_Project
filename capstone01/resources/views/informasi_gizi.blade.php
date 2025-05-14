@@ -36,20 +36,44 @@
         </form>
 
         <!-- Hasil Pencarian -->
-        <section class="w-full max-w-2xl bg-white p-6 rounded-lg shadow-md text-left">
-            <h2 class="text-xl font-semibold text-gray-800">Hasil Pencarian:</h2>
-            @if(isset($results))
-                @if(count($results) > 0)
-                    <ul class="mt-4 list-disc list-inside text-gray-700">
-                        @foreach($results as $result)
-                            <li class="py-2 border-b border-gray-200">{{ $result }}</li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p class="text-red-500 mt-4">Tidak ada hasil yang ditemukan.</p>
-                @endif
-            @endif
-        </section>
+        <!-- Hasil Pencarian -->
+    <section class="w-full max-w-2xl bg-white p-6 rounded-lg shadow-md text-left">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Hasil Pencarian untuk "{{ request('search') }}":</h2>
+        
+        @if($results->count() > 0)
+            <div class="space-y-4">
+                @foreach($results as $food)
+                    <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition">
+                        <h3 class="font-bold text-lg text-blue-600">{{ $food->name }}</h3>
+                        <p class="text-gray-600 mb-3">{{ $food->description }}</p>
+                        
+                        <div class="grid grid-cols-4 gap-3 text-sm">
+                            <div class="bg-blue-50 p-2 rounded text-center">
+                                <span class="font-bold block">{{ $food->calories }}</span>
+                                <span class="text-xs">Kalori</span>
+                            </div>
+                            <div class="bg-green-50 p-2 rounded text-center">
+                                <span class="font-bold block">{{ $food->protein }}g</span>
+                                <span class="text-xs">Protein</span>
+                            </div>
+                            <div class="bg-yellow-50 p-2 rounded text-center">
+                                <span class="font-bold block">{{ $food->carbs }}g</span>
+                                <span class="text-xs">Karbohidrat</span>
+                            </div>
+                            <div class="bg-red-50 p-2 rounded text-center">
+                                <span class="font-bold block">{{ $food->fat }}g</span>
+                                <span class="text-xs">Lemak</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-lg">
+                Tidak ditemukan hasil untuk "{{ request('search') }}". Coba dengan kata kunci lain.
+            </div>
+        @endif
+    </section>
     </main>
 
     <!-- Footer -->

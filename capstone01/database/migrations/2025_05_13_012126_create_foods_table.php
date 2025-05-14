@@ -9,16 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    // database/migrations/xxxx_create_foods_table.php
+    public function up()
     {
         Schema::create('foods', function (Blueprint $table) {
-            $table->id(); // auto increment
-            $table->unsignedBigInteger('fdc_id')->unique();
-            $table->string('description');
-            $table->string('data_type')->nullable();
+            $table->id();
+            $table->string('name');
+            $table->float('calories');
+            $table->float('protein');
+            $table->float('carbs');
+            $table->float('fat');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**

@@ -21,3 +21,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+# ⛔ Abaikan file CSV besar agar tidak ikut ke GitHub
+capstone01/database/data/*.csv
+capstone01/storage/app/foods/*.csv

@@ -3,79 +3,145 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Food;
 
 class InformasiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function showInfo(Request $request)
     {
         $query = $request->input('search');
+        $results = collect();
 
-        $data = [
-            "Kalori adalah satuan energi...",
-            "IMT digunakan untuk mengukur status gizi...",
-            "Asupan protein dibutuhkan untuk pertumbuhan...",
-            // bisa ditambahkan data dummy atau real dari database nanti
-        ];
-
-        $results = [];
         if ($query) {
-            $results = array_filter($data, function ($item) use ($query) {
-                return stripos($item, $query) !== false;
-            });
+            $results = Food::search($query)->get();
+            
+            // Fallback ke database search jika Algolia error
+            if ($results->isEmpty()) {
+                $results = Food::where('name', 'like', "%{$query}%")
+                            ->orWhere('description', 'like', "%{$query}%")
+                            ->limit(10)
+                            ->get();
+            }
         }
 
         return view('informasi_gizi', compact('results'));
     }
-
-
     /**
-     * Show the form for creating a new resource.
+     * Memecah query menjadi istilah-istilah pencarian
      */
-    public function create()
+    private function prepareSearchTerms($query)
     {
-        //
+        $terms = explode(' ', strtolower($query));
+        $expandedTerms = [];
+        
+        foreach ($terms as $term) {
+            $expandedTerms[] = $term;
+            // Tambahkan sinonim jika ada
+            if ($synonyms = $this->getSynonyms($term)) {
+                $expandedTerms = array_merge($expandedTerms, $synonyms);
+            }
+        }
+        
+        return array_unique($expandedTerms);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Kamus sinonim sederhana
      */
-    public function store(Request $request)
+    private function getSynonyms($term)
     {
-        //
+        $synonyms = [
+            'nasi' => ['beras', 'nasiputih'],
+            'ayam' => ['daging ayam', 'chicken'],
+            'telur' => ['telor', 'egg'],
+            'susu' => ['susu sapi', 'milk'],
+            // Tambahkan lebih banyak sinonim sesuai kebutuhan
+        ];
+        
+        return $synonyms[$term] ?? [];
     }
 
     /**
-     * Display the specified resource.
+     * Mempersiapkan query untuk boolean full-text search
      */
-    public function show(string $id)
+    private function prepareBooleanSearch($query)
     {
-        //
+        $terms = explode(' ', $query);
+        return implode('* ', $terms) . '*';
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    private function naturalLanguageProcessing($query)
     {
-        //
+        // Normalisasi teks
+        $query = strtolower(trim($query));
+        
+        // Pemahaman intent sederhana
+        $intents = [
+            'berapa kalori' => ['kalori', 'energi'],
+            'kandungan protein' => ['protein'],
+            'karbohidrat' => ['karbo', 'karbohidrat'],
+        ];
+        
+        // Ekstrak kata kunci
+        $keywords = [];
+        foreach ($intents as $intent => $terms) {
+            if (strpos($query, $intent) !== false) {
+                $keywords = array_merge($keywords, $terms);
+            }
+        }
+        
+        // Jika tidak ada intent khusus, gunakan seluruh query
+        if (empty($keywords)) {
+            $keywords = array_filter(explode(' ', $query), function($word) {
+                return strlen($word) > 2; // Abaikan kata pendek
+            });
+        }
+        
+        return $keywords;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    private function searchFood($query)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $foodDatabase = [
+            [
+                'name' => 'Nasi Putih',
+                'calories' => 130,
+                'protein' => 2.7,
+                'carbs' => 28,
+                'fat' => 0.3,
+                'description' => 'Nasi putih biasa, 100 gram',
+                'keywords' => ['nasi', 'beras', 'nasiputih', 'makanan pokok']
+            ],
+            // Data lainnya
+        ];
+        
+        $results = [];
+        $queryTerms = explode(' ', strtolower($query));
+        
+        foreach ($foodDatabase as $food) {
+            $matchScore = 0;
+            $foodKeywords = array_map('strtolower', $food['keywords']);
+            
+            foreach ($queryTerms as $term) {
+                if (in_array($term, $foodKeywords) || 
+                    strpos(strtolower($food['name']), $term) !== false ||
+                    strpos(strtolower($food['description']), $term) !== false) {
+                    $matchScore++;
+                }
+            }
+            
+            if ($matchScore > 0) {
+                $food['match_score'] = $matchScore;
+                $results[] = $food;
+            }
+        }
+        
+        // Urutkan berdasarkan kecocokan
+        usort($results, function($a, $b) {
+            return $b['match_score'] <=> $a['match_score'];
+        });
+        
+        return $results;
     }
 }
