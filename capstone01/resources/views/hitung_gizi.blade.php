@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hitung Gizi - GiziSmart</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 text-gray-800">
+@extends('layouts.app')
 
-    <!-- Navbar -->
-    <nav class="bg-blue-600 text-white shadow-md fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 class="text-xl font-bold">GiziSmart</h1>
-            <div class="space-x-4">
-                <a href="{{ url('/') }}" class="hover:underline">Home</a>
-                <a href="{{ url('/informasi') }}" class="hover:underline">Informasi Gizi</a>
-                <a href="{{ url('/gizi') }}" class="underline font-semibold">Hitung Gizi</a>
-                <a href="{{ url('/riwayat') }}" class="hover:underline">Riwayat</a>
-                <a href="{{ url('/profil') }}" class="hover:underline">Profil</a>
-            </div>
-        </div>
-    </nav>
+@section('title', 'Hitung Gizi - GiziSmart')
+@section('content')
 
     <!-- Konten Utama -->
     <div class="pt-24 pb-10 px-6 md:px-0">
@@ -130,9 +111,4 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white border-t mt-10 py-4 text-center text-sm text-gray-500">
-        &copy; 2025 Capstone01. Hak Cipta Dilindungi.
-    </footer>
-
-</body>
-</html>
+@endsection
