@@ -8,17 +8,23 @@ use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InformasiController;
 
+Route::get('/admin-dashboard', function () {
+    return view('admin_gizi');
+})->middleware(['auth', 'admin.only']);
+
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'verified']);
 // middleware kalau ingin akses index blm bisa klo blm login
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified']);
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware(['auth', 'verified']);
 
 // akses fungsi IMT
 Route::get('/gizi', [GiziController::class, 'showForm'])->middleware(['auth', 'verified']);
 Route::post('/gizi', [GiziController::class, 'hitung'])->middleware(['auth', 'verified']);
 
 // akses fungsi pencarian informasi gizi makanan
+Route::get('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified'])->name('informasi');
+Route::get('/admin/sync-usda', [InformasiController::class, 'syncFromUSDA'])->middleware(['auth', 'verified', 'admin.access'])->name('admin.sync.usda');
 Route::get('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified']);
 Route::post('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified']);
 

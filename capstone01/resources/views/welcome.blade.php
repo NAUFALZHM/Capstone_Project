@@ -3,7 +3,7 @@
 {{-- @section('description', 'Dashboard GiziSmart - Selamat datang di GiziSmart, platform untuk menghitung kebutuhan gizi harian Anda dan mendapatkan informasi gizi yang akurat.') --}}
 @section('content')
     <!-- Konten Dashboard -->
-    <main class="pt-24 px-4 flex flex-col items-center flex-grow">
+    <main class="pt-0 px-4 flex flex-col items-center flex-grow">
         <h1 class="text-4xl font-bold text-blue-700 mb-6 text-center">Selamat Datang di GiziSmart</h1>
 
         <!-- Grid untuk 2 Video Cards -->

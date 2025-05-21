@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Konten Utama -->
-    <div class="pt-24 pb-10 px-6 md:px-0">
+    <div class="pt-1 pb-1 px-6 md:px-0">
         <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
             
                 <form class="flex flex-col md:flex-row items-center md:items-start gap-8" method="POST" action="{{ url('/profil') }}">

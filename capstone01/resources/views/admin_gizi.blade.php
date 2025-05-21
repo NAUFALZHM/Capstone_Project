@@ -109,6 +109,13 @@
                 <button class="bg-blue-600 text-white px-4 py-2 mt-4 rounded-lg">Edit User</button>
             </div>
 
+            {{-- Tombol sikronisasi --}}
+            <div class="bg-white p-4 rounded-lg shadow-lg w-full mt-4">
+                <h2 class="text-xl font-semibold mb-4">Sinkronisasi Data dari USDA</h2>
+                <p class="text-gray-600 mb-4">Klik tombol di bawah untuk mengunggah data gizi dari USDA ke Algolia.</p>
+                <a href="{{ route('admin.sync.usda') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Sinkronisasi Data</a>
+            </div>
+
         </div>
     </main>
 

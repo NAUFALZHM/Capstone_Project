@@ -20,7 +20,7 @@
     <!-- Hasil Pencarian -->
     @if(request()->has('search'))
     <section class="w-full max-w-2xl bg-white p-6 rounded-lg shadow-md text-left">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Hasil Pencarian untuk "{{ request('search') }}":</h2>
+        <h2 class="text-xl font-semibold text-gray-800 mb-9">Hasil Pencarian untuk "{{ request('search') }}":</h2>
         
         @if($results->count() > 0)
             <div class="space-y-4">

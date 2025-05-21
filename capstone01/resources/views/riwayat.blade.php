@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Konten Riwayat -->
-    <main class="pt-24 px-4 flex flex-col items-center flex-grow">
+    <main class="pt-1 px-4 flex flex-col items-center flex-grow">
         <h1 class="text-4xl font-bold text-blue-700 mb-6 text-center">Riwayat Perhitungan Gizi</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">

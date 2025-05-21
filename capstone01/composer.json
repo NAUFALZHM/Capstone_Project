@@ -9,6 +9,7 @@
         "php": "^8.2",
         "algolia/algoliasearch-client-php": "^4.19",
         "filament/filament": "^3.0",
+        "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^12.0",
         "laravel/scout": "^10.15",
         "laravel/tinker": "^2.10.1",
