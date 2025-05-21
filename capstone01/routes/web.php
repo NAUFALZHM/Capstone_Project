@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\GiziController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatController;
@@ -8,9 +9,9 @@ use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InformasiController;
 
-Route::get('/admin-dashboard', function () {
-    return view('admin_gizi');
-})->middleware(['auth', 'admin.only']);
+// Route::get('/admin-dashboard', function () {
+//     return view('admin_gizi');
+// })->middleware(['auth', 'admin.only']);
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'verified']);
 // middleware kalau ingin akses index blm bisa klo blm login
@@ -42,12 +43,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('dashboard');
-
+    Route::get('/', [AuthenticatedSessionController::class, 'redirectTo'])->name('/dashboard');
     // Tambah route lain di sini juga, semua butuh login
+    //hapus user dari admin
+    Route::delete('/user/{id}', [AdminController::class, 'destroy']);
 });
+
+
 
 
 

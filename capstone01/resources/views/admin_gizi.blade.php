@@ -18,22 +18,18 @@
                 <a href="#hitung" class="hover:underline">Hitung Gizi</a>
                 <a href="#user" class="hover:underline">User</a>
                 <a href="#edit" class="hover:underline">Edit Tampilan</a>
+                <a href="{{ url('/profil') }}" class="hover:underline">Profil</a>
+
             </div>
         </div>
     </nav>
 
     <!-- Konten Admin -->
     <main class="pt-24 px-4 flex flex-col items-center flex-grow">
-        <h1 class="text-4xl font-bold text-blue-700 mb-6 text-center">Admin Dashboard - GiziSmart</h1>
+        <h1 class="text-4xl font-bold text-blue-700 mb-6 text-center">Admin Dashboard</h1>
 
         <!-- Grid untuk 4 Sections -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-6xl">
-
-            <!-- Dashboard Section -->
-            <div class="bg-white p-4 rounded-lg shadow-lg w-full">
-                <h2 class="text-xl font-semibold mb-4">Dashboard</h2>
-                <p class="text-gray-600">Selamat datang di halaman admin. Pantau aktivitas pengguna dan kelola data aplikasi di sini.</p>
-            </div>
 
             <!-- Riwayat Section -->
             <div class="bg-white p-4 rounded-lg shadow-lg w-full" id="riwayat">
@@ -104,9 +100,28 @@
 
             <!-- Edit Tampilan Section -->
             <div class="bg-white p-4 rounded-lg shadow-lg w-full" id="edit">
-                <h2 class="text-xl font-semibold mb-4">Edit Tampilan</h2>
-                <p class="text-gray-600">Pilih tampilan yang ingin diedit:</p>
-                <button class="bg-blue-600 text-white px-4 py-2 mt-4 rounded-lg">Edit User</button>
+                <table class=" border border-black w-full">
+                @foreach ($products as $user )
+                <tr>
+                    <th>Nama</th>
+                    <th>Stok</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                </tr>
+                <tr>
+                    <td>{{ $user->name }}</td>   
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->role }}</td>
+                    <td>
+                        <form action="{{ url('/user', $user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg">Hapus</button>
+                        </form>
+                </tr>
+                @endforeach
+            
+                </table>
             </div>
 
             {{-- Tombol sikronisasi --}}

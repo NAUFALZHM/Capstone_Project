@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -34,10 +35,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    public function show() {}
 
     /**
      * Show the form for editing the specified resource.
@@ -60,6 +58,9 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = User::findOrFail($id);
+        $product->delete();
+
+        return redirect('/')->with('success', 'Produk berhasil dihapus.');
     }
 }

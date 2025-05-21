@@ -8,19 +8,21 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
      */
-    protected function redirectTo()
+    public function redirectTo()
     {
         if (Auth::check() && Auth::user()->role === 'admin') {
-            return '/admin-dashboard';
+            $products = User::all(); // ambil semua data
+            return view('admin_gizi', compact('products'));
+        } else {
+            return view('welcome'); // atau route dashboard user biasa
         }
-
-        return '/'; // atau route dashboard user biasa
     }
 
     public function create(): View
