@@ -52,7 +52,7 @@
 
                         </select>
                     </div>
-                    <button type="submit" class="bg-blue-500 text-white w-full p-2 rounded hover:bg-blue-600">Hitung</button>
+                    <a type="submit" class="bg-blue-500 text-white w-full p-2 rounded hover:bg-blue-600">Hitung</button>
                 </form>
                 
                 <!-- {{-- <form>

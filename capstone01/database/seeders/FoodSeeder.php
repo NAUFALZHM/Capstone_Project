@@ -31,7 +31,22 @@ class FoodSeeder extends Seeder
                 'carbs' => 0,
                 'fat' => 15,
                 'description' => 'Ayam goreng tanpa kulit, 100 gram'
+            ],[
+                'name' => 'tahu goreng numquan',
+                'calories' => 239,
+                'protein' => 23,
+                'carbs' => 0,
+                'fat' => 15,
+                'description' => 'Ayam goreng tanpa kulit, 100 gram'
             ],
+            [
+                'name' => 'kerbau masuk parit',
+                'calories' => 239,
+                'protein' => 23,
+                'carbs' => 0,
+                'fat' => 15,
+                'description' => 'Ayam goreng tanpa kulit, 100 gram'
+            ]
             // Tambahkan data lainnya
         ]);
     }

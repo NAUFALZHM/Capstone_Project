@@ -23,6 +23,7 @@ class InformasiController extends Controller
                             ->limit(10)
                             ->get();
             }
+            
         }
 
         return view('informasi_gizi', compact('results'));

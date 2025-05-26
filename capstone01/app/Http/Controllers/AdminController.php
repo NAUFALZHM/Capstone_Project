@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Food;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,9 @@ class AdminController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function tampilTambah()
     {
-        //
+        return view('tambah_gizi');
     }
 
     /**
@@ -29,7 +30,18 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated= $request->validate([
+            'name' => 'required|string',
+            'calories' => 'required|integer',
+            'protein' => 'required|numeric',
+            'carbs' => 'required|numeric',
+            'fat' => 'required|numeric',
+            'description' => 'nullable|string',
+        ]);
+
+        Food::create($validated);
+
+        return redirect('/admin/tambahInforGizi')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**

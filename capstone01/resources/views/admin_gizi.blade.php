@@ -33,24 +33,11 @@
 
             <!-- Riwayat Section -->
             <div class="bg-white p-4 rounded-lg shadow-lg w-full" id="riwayat">
-                <h2 class="text-xl font-semibold mb-4">Riwayat Pencarian Gizi</h2>
+                <h2 class="text-xl font-semibold mb-4">Tambah Informasi Gizi</h2>
                 <table class="min-w-full bg-white">
-                    <thead>
-                        <tr class="w-full bg-gray-200 text-left">
-                            <th class="py-2 px-4">ID</th>
-                            <th class="py-2 px-4">User</th>
-                            <th class="py-2 px-4">Query</th>
-                            <th class="py-2 px-4">Tanggal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b">
-                            <td class="py-2 px-4">1</td>
-                            <td class="py-2 px-4">User123</td>
-                            <td class="py-2 px-4">Kalori Ayam Goreng</td>
-                            <td class="py-2 px-4">2025-05-19</td>
-                        </tr>
-                    </tbody>
+                    <a class="bg-blue-500 text-white px-4 py-2 rounded-lg" href="{{ url('/admin/tambahInfoGizi') }}">
+                        Tambahkan Infromasi gizi
+                    </a>
                 </table>
             </div>
 

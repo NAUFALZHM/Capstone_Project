@@ -50,6 +50,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
+// route untuk tambah informasi_gizi
+Route::get('/admin/tambahInfoGizi', [AdminController::class, 'tampilTambah']);
+Route::post('/admin/tambahInfoGizi', [AdminController::class, 'store']);
+
+
 
 
 
