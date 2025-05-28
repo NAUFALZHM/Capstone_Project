@@ -2,113 +2,92 @@
 
 @section('title', 'Hitung Gizi - GiziSmart')
 @section('content')
+<div class="py-12 px-4 md:px-0 bg-gradient-to-tr from-blue-50 via-white to-blue-50 min-h-[calc(100vh-6rem)] flex items-center justify-center">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
 
-    <!-- Konten Utama -->
-    <div class="pt-1 pb-1 px-6 md:px-0">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Form Card (kecil, span 1 col) -->
+        <div
+            class="bg-white rounded-3xl shadow-2xl border border-gray-200 p-8
+                   max-w-md mx-auto
+                   transform hover:scale-[1.02] transition-transform duration-300 ease-in-out"
+        >
+            <h2 class="text-3xl font-extrabold mb-8 text-blue-700 drop-shadow-md flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a3 3 0 013-3h5a3 3 0 013 3v6" />
+                </svg>
+                Hitung Gizi Anda
+            </h2>
 
-            <!-- Form Perhitungan -->
-            
-            <div class="bg-white p-8 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold mb-4">Hitung Gizi Anda</h2>
-                <form method="POST" action="{{ url('/gizi') }}">
-                    @csrf
-                    <!-- Usia -->
-                    <div class="mb-4">
-                        <label class="block mb-1 font-semibold">Usia (tahun):</label>
-                        <input type="number" name="age" class="w-full p-2 border rounded" value={{ old('age', auth()->user()->age) }}> 
-                    </div>
-                    <!-- Gender -->
-                    <div class="mb-4">
-                        <label class="block mb-1 font-semibold">Jenis Kelamin:</label>
-                        <select name="gender" class="w-full p-2 border rounded">
-                            {{-- <option value="male" {{ old('gender', auth()->user()->gender) == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="female" {{ old('gender', auth()->user()->gender) == 'female' ? 'selected' : '' }}>Perempuan</option> --}}
-                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Perempuan</option>
+            <form method="POST" action="{{ url('/gizi') }}" class="space-y-6 text-gray-700">
+                @csrf
 
-                        </select>
-                    </div>
-                    <!-- Berat -->
-                    <div class="mb-4">
-                        <label class="block mb-1 font-semibold">Berat Badan (kg):</label>
-                        <input type="number" name="weight" class="w-full p-2 border rounded" value={{ old('weight', auth()->user()->weight) }}> 
-                    </div>
-                    <!-- Tinggi -->
-                    <div class="mb-4">
-                        <label class="block mb-1 font-semibold">Tinggi Badan (cm):</label>
-                        <input type="number" name="height" class="w-full p-2 border rounded" value={{ old('height', auth()->user()->height) }}> 
-                    </div>
-                    <!-- Aktivitas -->
-                    <div class="mb-6">
-                        <label class="block mb-1 font-semibold">Aktivitas Harian:</label>
-                        <select name="activity_level" class="w-full p-2 border rounded">
-                            {{-- <option value="rendah" {{ old('activity_level', auth()->user()->activity_level) == 'rendah' ? 'selected' : '' }}>Rendah</option>
-                            <option value="sedang" {{ old('activity_level', auth()->user()->activity_level) == 'sedang' ? 'selected' : '' }}>Sedang</option>
-                            <option value="tinggi" {{ old('activity_level', auth()->user()->activity_level) == 'tinggi' ? 'selected' : '' }}>Tinggi</option> --}}
-                            <option value="rendah" {{ old('activity_level') == 'rendah' ? 'selected' : '' }}>Rendah</option>
-                            <option value="sedang" {{ old('activity_level') == 'sedang' ? 'selected' : '' }}>Sedang</option>
-                            <option value="tinggi" {{ old('activity_level') == 'tinggi' ? 'selected' : '' }}>Tinggi</option>
-
-                        </select>
-                    </div>
-                    <a type="submit" class="bg-blue-500 text-white w-full p-2 rounded hover:bg-blue-600">Hitung</button>
-                </form>
-                
-                <!-- {{-- <form>
-                    <div class="mb-4">
-                        <label class="block mb-1 font-semibold">Usia (tahun):</label>
-                        <input type="number" class="w-full p-2 border rounded" placeholder="Masukkan usia Anda">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block mb-1 font-semibold">Berat Badan (kg):</label>
-                        <input type="number" class="w-full p-2 border rounded" placeholder="Masukkan berat badan Anda">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block mb-1 font-semibold">Tinggi Badan (cm):</label>
-                        <input type="number" class="w-full p-2 border rounded" placeholder="Masukkan tinggi badan Anda">
-                    </div>
-                    <div class="mb-6">
-                        <label class="block mb-1 font-semibold">Aktivitas Harian:</label>
-                        <select class="w-full p-2 border rounded">
-                            <option value="rendah">Rendah</option>
-                            <option value="sedang">Sedang</option>
-                            <option value="tinggi">Tinggi</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="bg-blue-500 text-white w-full p-2 rounded hover:bg-blue-600">Hitung</button>
-                </form> --}} -->
-            </div>
-
-            <!-- Hasil -->
-            <!-- Hasil -->
-            @if(isset($kalori) && isset($imt) && isset($status_gizi))
-                <div class="mt-6 p-4 border rounded bg-gray-100">
-                    <h2 class="text-xl font-semibold mb-2">Hasil Perhitungan:</h2>
-                    <p><strong>Kebutuhan Kalori Harian:</strong> {{ $kalori }} kkal</p>
-                    <p><strong>Indeks Massa Tubuh (IMT):</strong> {{ $imt }}</p>
-                    <p><strong>Status Gizi:</strong> {{ $status_gizi }}</p>
+                <div>
+                    <label class="block mb-2 font-semibold text-lg">Usia (tahun):</label>
+                    <input type="number" name="age" placeholder="Masukkan usia Anda" autocomplete="off"
+                        class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg 
+                               focus:outline-none focus:ring-4 focus:ring-blue-300 transition" />
                 </div>
-            @endif
 
-            {{-- @if (isset($kalori))
-            <div class="bg-white p-8 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold mb-4 text-center">Hasil Perhitungan</h2>
-                <p class="mb-4"><strong>Kebutuhan Kalori:</strong> {{ $kalori }} kcal/hari</p>
-                <p class="mb-4"><strong>Indeks Massa Tubuh (IMT):</strong> {{ $imt }}</p>
-                <p class="mb-4"><strong>Status Gizi:</strong> {{ $status_gizi }}</p>
-            </div>
-            @endif --}}
+                <div>
+                    <label class="block mb-2 font-semibold text-lg">Jenis Kelamin:</label>
+                    <select name="gender" class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
+                                           focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+                        <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                        <option value="male">Laki-laki</option>
+                        <option value="female">Perempuan</option>
+                    </select>
+                </div>
 
-            {{-- <div class="bg-white p-8 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold mb-4 text-center">Hasil Perhitungan</h2>
-                <p class="mb-4"><strong>Kebutuhan Kalori:</strong> <span id="kalori">-</span> kcal/hari</p>
-                <p class="mb-4"><strong>Indeks Massa Tubuh (IMT):</strong> <span id="imt">-</span></p>
-                <p class="mb-4"><strong>Status Gizi:</strong> <span id="status-gizi">-</span></p>
-            </div> --}}
+                <div>
+                    <label class="block mb-2 font-semibold text-lg">Berat Badan (kg):</label>
+                    <input type="number" name="weight" placeholder="Masukkan berat badan Anda" autocomplete="off"
+                        class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
+                               focus:outline-none focus:ring-4 focus:ring-blue-300 transition" />
+                </div>
 
+                <div>
+                    <label class="block mb-2 font-semibold text-lg">Tinggi Badan (cm):</label>
+                    <input type="number" name="height" placeholder="Masukkan tinggi badan Anda" autocomplete="off"
+                        class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
+                               focus:outline-none focus:ring-4 focus:ring-blue-300 transition" />
+                </div>
+
+                <div>
+                    <label class="block mb-2 font-semibold text-lg">Aktivitas Harian:</label>
+                    <select name="activity_level" class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
+                                           focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+                        <option value="" disabled selected>Pilih Level Aktivitas</option>
+                        <option value="rendah">Rendah</option>
+                        <option value="sedang">Sedang</option>
+                        <option value="tinggi">Tinggi</option>
+                    </select>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold
+                           py-4 rounded-2xl text-xl hover:from-blue-700 hover:to-indigo-700
+                           shadow-lg shadow-blue-300/50 transition-all duration-300">
+                    Hitung Sekarang
+                </button>
+            </form>
         </div>
-    </div>
 
-    <!-- Footer -->
+        <!-- Result Card -->
+        @if(isset($kalori) && isset($imt) && isset($status_gizi))
+        <div
+            class="bg-gradient-to-tr from-green-100 via-white to-green-100 rounded-3xl shadow-2xl border border-green-300 p-10
+                   flex flex-col justify-center text-gray-800
+                   transform hover:scale-[1.03] transition-transform duration-300 ease-in-out"
+        >
+            <h2 class="text-3xl font-extrabold mb-6 text-green-700 drop-shadow-md">Hasil Perhitungan</h2>
+            <div class="space-y-6 text-lg leading-relaxed">
+                <p><span class="font-semibold">Kebutuhan Kalori Harian:</span> <span class="text-green-800 text-xl">{{ $kalori }} kkal</span></p>
+                <p><span class="font-semibold">Indeks Massa Tubuh (IMT):</span> <span class="text-green-800 text-xl">{{ $imt }}</span></p>
+                <p><span class="font-semibold">Status Gizi:</span> <span class="text-green-800 text-xl">{{ $status_gizi }}</span></p>
+            </div>
+        </div>
+        @endif
+
+    </div>
+</div>
 @endsection

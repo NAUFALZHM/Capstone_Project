@@ -12,7 +12,6 @@ use App\Http\Controllers\InformasiController;
 // Route::get('/admin-dashboard', function () {
 //     return view('admin_gizi');
 // })->middleware(['auth', 'admin.only']);
-
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'verified']);
 // middleware kalau ingin akses index blm bisa klo blm login
 // Route::get('/', function () {
@@ -48,11 +47,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //hapus user dari admin
     Route::delete('/user/{id}', [AdminController::class, 'destroy']);
 });
-
-
-// route untuk tambah informasi_gizi
-Route::get('/admin/tambahInfoGizi', [AdminController::class, 'tampilTambah']);
-Route::post('/admin/tambahInfoGizi', [AdminController::class, 'store']);
 
 
 
