@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Food;
 
 class AdminController extends Controller
 {
@@ -21,7 +23,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('upload');
     }
 
     /**
@@ -29,7 +31,25 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'calories' => 'required',
+            'protein' => 'required',
+            'carbs' => 'required',
+            'fat' => 'required',
+        ]);
+        $food = Food::create([
+            'name' => $request->name,
+            'calories' => $request->calories,
+            'protein' => $request->protein,
+            'carbs' => $request->carbs,
+            'fat' => $request->fat,
+        ]);
+
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            return redirect()->intended('/');
+        }
     }
 
     /**

@@ -13,6 +13,8 @@ use App\Http\Controllers\InformasiController;
 //     return view('admin_gizi');
 // })->middleware(['auth', 'admin.only']);
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/tambahInfoGizi', [AdminController::class, 'create'])->middleware(['auth', 'verified']);
+Route::post('/tambahInfoGizi', [AdminController::class, 'store'])->middleware(['auth', 'verified']);
 // middleware kalau ingin akses index blm bisa klo blm login
 // Route::get('/', function () {
 //     return view('welcome');
@@ -25,7 +27,6 @@ Route::post('/gizi', [GiziController::class, 'hitung'])->middleware(['auth', 've
 // akses fungsi pencarian informasi gizi makanan
 Route::get('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified'])->name('informasi');
 Route::get('/admin/sync-usda', [InformasiController::class, 'syncFromUSDA'])->middleware(['auth', 'verified', 'admin.access'])->name('admin.sync.usda');
-Route::get('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified']);
 Route::post('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified']);
 
 // akses riwayat

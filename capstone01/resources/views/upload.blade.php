@@ -12,25 +12,25 @@
         <h1 class="text-3xl font-semibold text-blue-700 mb-6 text-center">Upload Data Makanan</h1>
 
         <!-- Form data makanan -->
-        <form action="#" method="POST" class="space-y-6">
+        <form action="{{url ('/tambahInfoGizi')}}" method="POST" class="space-y-6">
             @csrf
             <div>
-                <label for="food_name" class="block text-gray-700 font-medium mb-2">Nama Makanan</label>
+                <label for="name" class="block text-gray-700 font-medium mb-2">Nama Makanan</label>
                 <input
                     type="text"
-                    id="food_name"
-                    name="food_name"
-                    placeholder="Contoh: Nasi Goreng"
+                    id="name"
+                    name="name"
+                    placeholder="Nasi Goreng"
                     class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     required
                 />
             </div>
 
             <div>
-                <label for="food_info" class="block text-gray-700 font-medium mb-2">Informasi Makanan</label>
+                <label for="description" class="block text-gray-700 font-medium mb-2">Informasi Makanan</label>
                 <textarea
-                    id="food_info"
-                    name="food_info"
+                    id="description"
+                    name="description"
                     rows="3"
                     placeholder="Deskripsi singkat tentang makanan ini"
                     class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"

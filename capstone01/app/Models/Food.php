@@ -9,6 +9,7 @@ class Food extends Model
 {
     use Searchable;
     protected $table = 'foods';
+    protected $fillable = ['name', 'calories', 'protein', 'carbs', 'fat'];
 
     // Kolom yang akan di-index
     public function toSearchableArray()
@@ -24,26 +25,26 @@ class Food extends Model
             'tags' => $this->generateSearchTags()
         ];
     }
-    
+
     // Buat tag pencarian otomatis
     protected function generateSearchTags()
     {
         $tags = [strtolower($this->name)];
-        
+
         // Otomatis generate sinonim
         if (str_contains($this->name, 'ayam')) {
             $tags[] = 'chicken';
             $tags[] = 'daging ayam';
         }
-        
+
         if (str_contains($this->name, 'nasi')) {
             $tags[] = 'beras';
             $tags[] = 'rice';
         }
-        
+
         return $tags;
     }
-    
+
     // Konfigurasi index Algolia
     public function searchableAs()
     {

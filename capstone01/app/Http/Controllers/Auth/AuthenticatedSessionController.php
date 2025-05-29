@@ -18,8 +18,8 @@ class AuthenticatedSessionController extends Controller
     public function redirectTo()
     {
         if (Auth::check() && Auth::user()->role === 'admin') {
-            $products = User::all(); // ambil semua data
-            return view('admin_gizi', compact('products'));
+            $users = User::all(); // ambil semua data
+            return view('admin_gizi', compact('users'));
         } else {
             return view('welcome'); // atau route dashboard user biasa
         }
@@ -45,7 +45,7 @@ class AuthenticatedSessionController extends Controller
 
             $user = Auth::user();
             if ($user->role === 'admin') {
-                return redirect()->intended('/admin-dashboard');
+                return redirect()->intended('/admin');
             } else {
                 return redirect()->intended('/');
             }
