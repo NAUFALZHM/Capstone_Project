@@ -78,7 +78,7 @@
                 <a href="{{ url('/tambahInfoGizi') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
                     Upload Data
                 </a>
-                <a href="{{ url('/admin/food/edit') }}" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                <a href="{{ url('/editInfoGizi') }}" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
                     Edit Data
                 </a>
             </div>

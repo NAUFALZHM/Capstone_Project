@@ -60,9 +60,9 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        return view('edit');
     }
 
     /**
@@ -70,7 +70,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**

@@ -45,7 +45,7 @@
       </div>
 
       <div class="flex justify-between items-center pt-4">
-        <a href="#" class="text-gray-500 hover:underline">← Kembali</a>
+        <a href="{{url('/')}}" class="text-gray-500 hover:underline">← Kembali</a>
         <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
           Simpan Perubahan
         </button>

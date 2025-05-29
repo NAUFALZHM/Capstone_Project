@@ -15,6 +15,8 @@ use App\Http\Controllers\InformasiController;
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/tambahInfoGizi', [AdminController::class, 'create'])->middleware(['auth', 'verified']);
 Route::post('/tambahInfoGizi', [AdminController::class, 'store'])->middleware(['auth', 'verified']);
+Route::get('/editInfoGizi', [AdminController::class, 'edit'])->middleware(['auth', 'verified']);
+Route::post('/editInfoGizi', [AdminController::class, 'store'])->middleware(['auth', 'verified']);
 // middleware kalau ingin akses index blm bisa klo blm login
 // Route::get('/', function () {
 //     return view('welcome');
