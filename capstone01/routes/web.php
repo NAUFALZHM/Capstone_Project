@@ -28,7 +28,7 @@ Route::post('/gizi', [GiziController::class, 'hitung'])->middleware(['auth', 've
 
 // akses fungsi pencarian informasi gizi makanan
 Route::get('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified'])->name('informasi');
-Route::get('/admin/sync-usda', [InformasiController::class, 'syncFromUSDA'])->middleware(['auth', 'verified', 'admin.access'])->name('admin.sync.usda');
+// Route::get('/admin/sync-usda', [InformasiController::class, 'syncFromUSDA'])->middleware(['auth', 'verified', 'admin.access'])->name('admin.sync.usda');
 Route::post('/informasi', [InformasiController::class, 'showInfo'])->middleware(['auth', 'verified']);
 
 // akses riwayat

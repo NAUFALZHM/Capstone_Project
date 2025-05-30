@@ -12,9 +12,9 @@
                    transform hover:scale-[1.02] transition-transform duration-300 ease-in-out"
         >
             <h2 class="text-3xl font-extrabold mb-8 text-blue-700 drop-shadow-md flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a3 3 0 013-3h5a3 3 0 013 3v6" />
-                </svg>
+                </svg> --}}
                 Hitung Gizi Anda
             </h2>
 
@@ -23,43 +23,43 @@
 
                 <div>
                     <label class="block mb-2 font-semibold text-lg">Usia (tahun):</label>
-                    <input type="number" name="age" placeholder="Masukkan usia Anda" autocomplete="off"
+                    <input required type="number" name="age" placeholder="Masukkan usia Anda" autocomplete="off" value="{{ old('age', auth()->user()->age) }}"
                         class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg 
                                focus:outline-none focus:ring-4 focus:ring-blue-300 transition" />
                 </div>
 
                 <div>
                     <label class="block mb-2 font-semibold text-lg">Jenis Kelamin:</label>
-                    <select name="gender" class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
+                    <select required name="gender" class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
                                            focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
                         <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                        <option value="male">Laki-laki</option>
-                        <option value="female">Perempuan</option>
+                        <option value="male" {{ old('gender', auth()->user()->gender) == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                        <option value="female" {{ old('gender', auth()->user()->gender) == 'female' ? 'selected' : '' }}>Perempuan</option>
                     </select>
                 </div>
 
                 <div>
                     <label class="block mb-2 font-semibold text-lg">Berat Badan (kg):</label>
-                    <input type="number" name="weight" placeholder="Masukkan berat badan Anda" autocomplete="off"
+                    <input required type="number" name="weight" placeholder="Masukkan berat badan Anda" autocomplete="off" value="{{ old('weight', auth()->user()->weight) }}"
                         class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
                                focus:outline-none focus:ring-4 focus:ring-blue-300 transition" />
                 </div>
 
                 <div>
                     <label class="block mb-2 font-semibold text-lg">Tinggi Badan (cm):</label>
-                    <input type="number" name="height" placeholder="Masukkan tinggi badan Anda" autocomplete="off"
+                    <input required type="number" name="height" placeholder="Masukkan tinggi badan Anda" autocomplete="off" value="{{ old('height', auth()->user()->height) }}"
                         class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
                                focus:outline-none focus:ring-4 focus:ring-blue-300 transition" />
                 </div>
 
                 <div>
                     <label class="block mb-2 font-semibold text-lg">Aktivitas Harian:</label>
-                    <select name="activity_level" class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
+                    <select required name="activity_level" class="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg
                                            focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
-                        <option value="" disabled selected>Pilih Level Aktivitas</option>
-                        <option value="rendah">Rendah</option>
-                        <option value="sedang">Sedang</option>
-                        <option value="tinggi">Tinggi</option>
+                        <option value="" disabled {{ old('activity_level', auth()->user()->activity_level) == null ? 'selected' : '' }}>Pilih Level Aktivitas</option>
+                        <option value="rendah" {{ old('activity_level', auth()->user()->activity_level) == 'rendah' ? 'selected' : '' }}>Rendah</option>
+                        <option value="sedang" {{ old('activity_level', auth()->user()->activity_level) == 'sedang' ? 'selected' : '' }}>Sedang</option>
+                        <option value="tinggi" {{ old('activity_level', auth()->user()->activity_level) == 'tinggi' ? 'selected' : '' }}>Tinggi</option>
                     </select>
                 </div>
 
