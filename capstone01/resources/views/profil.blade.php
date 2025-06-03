@@ -9,6 +9,9 @@
             @csrf
             @method('PATCH')
 
+            <!-- Hidden input email agar validasi lolos -->
+            <input type="hidden" name="email" value="{{ old('email', auth()->user()->email) }}">
+
             <div class="w-full">
                 <div>
                     <label class="font-semibold">Nama:</label>
@@ -18,10 +21,10 @@
                         id="name"
                         class="border border-gray-300 rounded-md p-2 mt-1 w-full"
                         value="{{ old('name', auth()->user()->name) }}"
-                        disabled
+                        readonly
                     />
                 </div>
-                <p class="text-sm text-gray-500 mb-4">{{ old('email', auth()->user()->email) }}</p>
+                <p class="text-sm text-gray-500 mb-4">{{ auth()->user()->email }}</p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -32,7 +35,7 @@
                             id="age"
                             class="border border-gray-300 rounded-md p-2 mt-1 w-full"
                             value="{{ old('age', auth()->user()->age) }}"
-                            disabled
+                            readonly
                         />
                     </div>
                     <div>
@@ -43,7 +46,7 @@
                             id="weight"
                             class="border border-gray-300 rounded-md p-2 mt-1 w-full"
                             value="{{ old('weight', auth()->user()->weight) }}"
-                            disabled
+                            readonly
                         />
                     </div>
                     <div>
@@ -54,7 +57,7 @@
                             id="height"
                             class="border border-gray-300 rounded-md p-2 mt-1 w-full"
                             value="{{ old('height', auth()->user()->height) }}"
-                            disabled
+                            readonly
                         />
                     </div>
                     <div>
@@ -102,7 +105,12 @@
 
     editBtn.addEventListener('click', () => {
         formFields.forEach(id => {
-            document.getElementById(id).disabled = false;
+            const el = document.getElementById(id);
+            if (el.tagName === 'SELECT') {
+                el.removeAttribute('disabled'); // aktifkan select
+            } else {
+                el.removeAttribute('readonly'); // aktifkan input
+            }
         });
         editBtn.classList.add('hidden');
         saveBtn.classList.remove('hidden');

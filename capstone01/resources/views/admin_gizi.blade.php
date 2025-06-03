@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($users->where('role', 'user') as $user)
                     <tr class="border-b text-center">
                         <td class="py-2 px-4">{{ $user->name }}</td>
                         <td class="py-2 px-4">{{ $user->email }}</td>
@@ -78,7 +78,7 @@
                 <a href="{{ url('/tambahInfoGizi') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
                     Upload Data
                 </a>
-                <a href="{{ url('/editInfoGizi') }}" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                <a href="{{ url('/informasi') }}" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
                     Edit Data
                 </a>
             </div>
