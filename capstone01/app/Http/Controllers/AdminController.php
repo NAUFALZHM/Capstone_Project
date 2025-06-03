@@ -33,10 +33,12 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'description' => 'required',
             'calories' => 'required',
             'protein' => 'required',
             'carbs' => 'required',
             'fat' => 'required',
+
         ]);
         $food = Food::create([
             'name' => $request->name,
@@ -44,6 +46,7 @@ class AdminController extends Controller
             'protein' => $request->protein,
             'carbs' => $request->carbs,
             'fat' => $request->fat,
+            'description' => $request->description
         ]);
 
         $user = Auth::user();
@@ -60,9 +63,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('edit');
+        $makanan = Food::findOrFail($id);
+        return view('edit', compact('makanan'));
     }
 
     /**
@@ -70,12 +74,18 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        $makanan = Food::findOrFail($id); // Ambil data lama
+        $makanan->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'calories' => $request->calories,
+            'protein' => $request->protein,
+            'carbs' => $request->carbs,
+            'fat' => $request->fat,
+        ]);
+        return redirect('/');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $product = User::findOrFail($id);
