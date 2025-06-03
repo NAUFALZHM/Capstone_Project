@@ -16,6 +16,8 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </head>
 <body class="min-h-screen flex flex-col font-sans antialiased bg-gray-100 text-gray-800">
 

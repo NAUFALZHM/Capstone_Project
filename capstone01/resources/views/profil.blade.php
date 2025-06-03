@@ -117,7 +117,7 @@
             </div>
         </form>
 
-        <form method="POST" action="{{ route('logout') }}" class="mt-8">
+        {{-- <form method="POST" action="{{ route('logout') }}" class="mt-8">
             @csrf
             <button
                 class="w-full border border-red-600 bg-red-600 text-white px-4 py-3 rounded-lg font-semibold text-sm hover:bg-red-700 transition-shadow shadow-md"
@@ -125,7 +125,7 @@
             >
                 Logout
             </button>
-        </form>
+        </form> --}}
     </div>
 </div>
 

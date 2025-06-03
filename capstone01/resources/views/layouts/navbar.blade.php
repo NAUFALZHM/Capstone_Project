@@ -34,32 +34,31 @@
             </div>
 
             <!-- Auth Section (tanpa foto profile) -->
-            <div class="relative">
+            <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                 @auth
-                    <div class="group inline-block text-left">
-                        <button
-                            class="flex items-center space-x-1 text-sm text-gray-700 hover:text-green-700 focus:outline-none">
-                            <span>{{ Auth::user()->name }}</span>
-                            <svg class="w-4 h-4 text-gray-500 group-hover:text-green-700 transition" fill="none"
-                                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
+                    <button
+                        class="flex items-center space-x-1 text-sm text-gray-700 hover:text-green-700 focus:outline-none">
+                        <span>{{ Auth::user()->name }}</span>
+                        <svg class="w-4 h-4 text-gray-500 transition" fill="none"
+                            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
 
-                        <!-- Dropdown -->
-                        <div
-                            class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-40 hidden group-hover:block">
-                            <div class="py-1">
-                                <a href="{{ url('/profil') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit"
-                                        class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-                                        Logout
-                                    </button>
-                                </form>
-                            </div>
+                    <!-- Dropdown -->
+                    <div x-show="open" x-transition
+                        class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-40"
+                        @mouseenter="open = true" @mouseleave="open = false">
+                        <div class="py-1">
+                            <a href="{{ url('/profil') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                    Logout
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @else
@@ -69,6 +68,8 @@
                         class="bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded-md text-sm font-semibold shadow-sm">Daftar</a>
                 @endauth
             </div>
+
+
         </div>
     </div>
 </nav>
