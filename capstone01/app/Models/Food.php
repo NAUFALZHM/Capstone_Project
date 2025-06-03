@@ -9,7 +9,7 @@ class Food extends Model
 {
     use Searchable;
     protected $table = 'foods';
-    protected $fillable = ['name', 'calories', 'protein', 'carbs', 'fat'];
+    protected $fillable = ['name', 'calories', 'protein', 'carbs', 'fat', 'description'];
 
     // Kolom yang akan di-index
     public function toSearchableArray()

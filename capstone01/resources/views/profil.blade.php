@@ -27,7 +27,7 @@
                         id="name"
                         class="w-full border border-green-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-green-50 text-green-900 font-medium"
                         value="{{ old('name', auth()->user()->name) }}"
-                        disabled
+                        readonly
                     />
                 </div>
 
@@ -48,7 +48,7 @@
                             id="age"
                             class="w-full border border-green-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-green-50 text-green-900 font-medium"
                             value="{{ old('age', auth()->user()->age) }}"
-                            disabled
+                            readonly
                         />
                     </div>
 
@@ -65,7 +65,7 @@
                             id="weight"
                             class="w-full border border-green-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-green-50 text-green-900 font-medium"
                             value="{{ old('weight', auth()->user()->weight) }}"
-                            disabled
+                            readonly
                         />
                     </div>
 
@@ -82,7 +82,7 @@
                             id="height"
                             class="w-full border border-green-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-green-50 text-green-900 font-medium"
                             value="{{ old('height', auth()->user()->height) }}"
-                            disabled
+                            readonly
                         />
                     </div>
 
@@ -136,7 +136,12 @@
 
     editBtn.addEventListener('click', () => {
         formFields.forEach(id => {
-            document.getElementById(id).disabled = false;
+            const el = document.getElementById(id);
+            if (el.tagName === 'SELECT') {
+                el.removeAttribute('disabled'); // aktifkan select
+            } else {
+                el.removeAttribute('readonly'); // aktifkan input
+            }
         });
         editBtn.classList.add('hidden');
         saveBtn.classList.remove('hidden');
