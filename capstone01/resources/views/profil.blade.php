@@ -9,9 +9,9 @@
             Profil Pengguna
         </h1>
 
-        <form id="profilForm" class="flex flex-col md:flex-row gap-10" method="POST" action="{{ url('/profil') }}">
+        <form id="profilForm" class="flex flex-col md:flex-row gap-10" method="POST" action="{{ url('/profil/' . $user->id) }}">
             @csrf
-            @method('PATCH')
+            @method('PUT')
 
             <div class="flex-1 space-y-6">
                 <div>

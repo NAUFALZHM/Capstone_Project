@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -37,22 +38,17 @@ class ProfileController extends Controller
 
     //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
     // }
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request, $id)
     {
-        Log::info('Validated profile data:', $request->validated());
-
-        $user = $request->user();
-        $user->fill($request->validated());
-
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
-        $user->save();
-
-        Log::info('User data after save:', $user->fresh()->toArray());
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $user = User::findOrFail($id);
+        $user->update([
+            'username' => $request->username,
+            'age' => $request->age,
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'activity_level' => $request->activity_level
+        ]);
+        return redirect('/profil');
     }
 
     /**

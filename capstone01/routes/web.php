@@ -33,8 +33,8 @@ Route::get('/riwayat', [RiwayatController::class, 'riwayat'])->middleware((['aut
 
 Route::middleware('auth')->group(function () {
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profil', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/profil/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profil/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
