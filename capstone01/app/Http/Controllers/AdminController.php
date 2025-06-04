@@ -65,8 +65,11 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $makanan = Food::findOrFail($id);
-        return view('edit', compact('makanan'));
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            $makanan = Food::findOrFail($id);
+            return view('edit', compact('makanan'));
+        }
+        abort(403, 'Unauthorized');
     }
 
     /**
@@ -74,22 +77,25 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $makanan = Food::findOrFail($id); // Ambil data lama
-        $makanan->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'calories' => $request->calories,
-            'protein' => $request->protein,
-            'carbs' => $request->carbs,
-            'fat' => $request->fat,
-        ]);
-        return redirect('/');
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            $makanan = Food::findOrFail($id); // Ambil data lama
+            $makanan->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'calories' => $request->calories,
+                'protein' => $request->protein,
+                'carbs' => $request->carbs,
+                'fat' => $request->fat,
+            ]);
+            return redirect('/');
+        }
+        abort(403, 'Unauthorized');
     }
 
     public function destroy(string $id)
     {
-        $product = User::findOrFail($id);
-        $product->delete();
+        $User = User::findOrFail($id);
+        $User->delete();
 
         return redirect('/')->with('success', 'Produk berhasil dihapus.');
     }

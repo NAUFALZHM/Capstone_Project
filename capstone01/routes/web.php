@@ -9,18 +9,14 @@ use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InformasiController;
 
-// Route::get('/admin-dashboard', function () {
-//     return view('admin_gizi');
-// })->middleware(['auth', 'admin.only']);
+
+
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/tambahInfoGizi', [AdminController::class, 'create'])->middleware(['auth', 'verified']);
 Route::post('/tambahInfoGizi', [AdminController::class, 'store'])->middleware(['auth', 'verified']);
 Route::get('/editInfoGizi/{id}', [AdminController::class, 'edit'])->middleware(['auth', 'verified']);
 Route::put('/editInfoGizi/{id}', [AdminController::class, 'update'])->middleware(['auth', 'verified']);
-// middleware kalau ingin akses index blm bisa klo blm login
-// Route::get('/', function () {
-//     return view('welcome');
-// })->middleware(['auth', 'verified']);
+
 
 // akses fungsi IMT
 Route::get('/gizi', [GiziController::class, 'showForm'])->middleware(['auth', 'verified']);
@@ -34,9 +30,6 @@ Route::post('/informasi', [InformasiController::class, 'showInfo'])->middleware(
 // akses riwayat
 Route::get('/riwayat', [RiwayatController::class, 'riwayat'])->middleware((['auth', 'verified']));
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
