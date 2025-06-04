@@ -52,6 +52,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
+// kalkulator
+Route::post('/hitungan', [GiziController::class, 'HitungMenu']);
+Route::get('/kalkulatorGizi', [GiziController::class, 'TampilkanKalkulator']);
+Route::post('/hapusItem', [GiziController::class, 'hapusItem']);
 
 
 

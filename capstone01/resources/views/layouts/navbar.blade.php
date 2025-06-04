@@ -19,7 +19,7 @@
                     Informasi Gizi
                     <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-green-700 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="{{ url('/kalkulator') }}" class="relative group hover:text-green-700 transition">
+                <a href="{{ url('/kalkulatorGizi') }}" class="relative group hover:text-green-700 transition">
                     Kalkulator Gizi
                     <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-green-700 transition-all group-hover:w-full"></span>
                 </a>

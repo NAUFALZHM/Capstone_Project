@@ -6,6 +6,7 @@ use App\Models\NutritionResult;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Food;
 
 class GiziController extends Controller
 {
@@ -79,5 +80,59 @@ class GiziController extends Controller
             $imt < 30   => 'Gemuk',
             default     => 'Obesitas',
         };
+    }
+
+    public function HitungMenu(Request $request)
+    {
+        $food = Food::find($request->food_id);
+
+        if (!$food) {
+            return redirect()->back()->with('error', 'Makanan tidak ditemukan.');
+        }
+
+        // Ambil data yang sudah ada di session, atau array kosong
+        $menu = session()->get('menu', []);
+
+        // Tambahkan makanan baru ke session
+        $menu[] = $food;
+
+        session()->put('menu', $menu);
+
+        return redirect('/kalkulatorGizi'); // Halaman kalkulator
+    }
+    // tampilan Untuk Kalkulator
+    public function TampilkanKalkulator()
+    {
+        $menu = session()->get('menu', []);
+
+        // Hitung total
+        $total = [
+            'calories' => 0,
+            'protein' => 0,
+            'carbs' => 0,
+            'fat' => 0,
+        ];
+
+        foreach ($menu as $item) {
+            $total['calories'] += $item->calories;
+            $total['protein'] += $item->protein;
+            $total['carbs'] += $item->carbs;
+            $total['fat'] += $item->fat;
+        }
+
+        return view('kalkulator', compact('menu', 'total'));
+    }
+
+    public function hapusItem(Request $request)
+    {
+        $menu = session()->get('menu', []);
+        $index = $request->index;
+
+        if (isset($menu[$index])) {
+            unset($menu[$index]);
+            session()->put('menu', array_values($menu)); // Reset ulang index array
+        }
+
+        return redirect('/kalkulatorGizi');
     }
 }

@@ -48,14 +48,24 @@
                                 <h3 class="text-xl font-semibold text-green-700">{{ $food->name }}</h3>
                                 <p class="text-gray-600 mt-1">{{ $food->description }}</p>
                             </div>
-                            <!-- Tombol Add -->
-                            <form action="{{ url('/tambah-gizi') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="food_id" value="{{ $food->id }}">
-                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-lg shadow">
-                                    Add
-                                </button>
-                            </form>
+                            <div class="flex space-x-2">
+                                <!-- Tombol edit -->
+                                <form action="{{ url('/editInfoGizi/'.$food->id) }}" method="get">
+                                    @csrf
+                                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-lg shadow">
+                                        Edit
+                                    </button>
+                                </form>
+                        
+                                <!-- Tombol add -->
+                                <form action="{{ url('/hitungan') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="food_id" value="{{ $food->id }}">
+                                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-lg shadow">
+                                        Add
+                                    </button>
+                                </form>
+                            </div>
                         </div>
 
                         <div class="grid grid-cols-4 gap-3 text-sm text-center">
