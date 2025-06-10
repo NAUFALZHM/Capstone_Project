@@ -15,7 +15,7 @@
 
             <div class="flex-1 space-y-6">
                 <div>
-                    <label for="name" class="block text-green-800 font-semibold mb-2 flex items-center gap-2">
+                    <label for="name" class="text-green-800 font-semibold mb-2 flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.221 0 4.324.576 6.165 1.59M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
@@ -36,7 +36,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
                     <div>
-                        <label for="age" class="block text-green-800 font-semibold mb-2 flex items-center gap-2">
+                        <label for="age" class="text-green-800 font-semibold mb-2 flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -53,7 +53,7 @@
                     </div>
 
                     <div>
-                        <label for="weight" class="block text-green-800 font-semibold mb-2 flex items-center gap-2">
+                        <label for="weight" class="text-green-800 font-semibold mb-2 flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m2 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -70,7 +70,7 @@
                     </div>
 
                     <div>
-                        <label for="height" class="block text-green-800 font-semibold mb-2 flex items-center gap-2">
+                        <label for="height" class="text-green-800 font-semibold mb-2 flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v-4m0 0l6-6m-6 6h6m6-6v12a2 2 0 01-2 2h-4" />
                             </svg>
@@ -87,7 +87,7 @@
                     </div>
 
                     <div>
-                        <label for="activity_level" class="block text-green-800 font-semibold mb-2 flex items-center gap-2">
+                        <label for="activity_level" class="text-green-800 font-semibold mb-2 flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6" />
                             </svg>

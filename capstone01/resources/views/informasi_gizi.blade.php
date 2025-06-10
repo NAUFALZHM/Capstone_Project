@@ -19,11 +19,12 @@
         Temukan informasi terpercaya seputar nutrisi untuk menunjang pola makan dan gaya hidup sehat Anda.
     </p>
 
+
     <!-- Form Pencarian -->
     <form action="{{ url('/informasi') }}" method="GET" class="flex justify-center w-full max-w-xl mb-8 shadow-md bg-white/80 rounded-xl">
         <input 
             type="text" 
-            name="search" 
+            name="search"
             placeholder="Cari informasi gizi..." 
             class="px-4 py-2 rounded-l-xl w-full border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-black"
             value="{{ request('search') }}">
@@ -33,6 +34,15 @@
             Cari
         </button>
     </form>
+
+    <!-- Tombol Kembali ke Dashboard Admin (hanya untuk admin) -->
+    @if(auth()->user() && auth()->user()->role == 'admin')
+    <div class="w-full max-w-xl mb-6">
+        <a href="{{ url('/') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+            Kembali ke Dashboard Admin
+        </a>
+    </div>
+    @endif
 
     <!-- Hasil Pencarian -->
     @if(request()->has('search'))
@@ -49,7 +59,7 @@
                                 <p class="text-gray-600 mt-1">{{ $food->description }}</p>
                             </div>
                             <div class="flex space-x-2">
-                                <!-- Tombol edit -->
+                                <!-- Tombol edit (hanya untuk admin) -->
                                 @if(auth()->user() && auth()->user()->role == 'admin')
                                 <form action="{{ url('/editInfoGizi/'.$food->id) }}" method="get">
                                     @csrf
@@ -58,8 +68,9 @@
                                     </button>
                                 </form>
                                 @endif
-                        
-                                <!-- Tombol add -->
+                                
+                                <!-- Tombol add (hanya untuk user, bukan admin) -->
+                                @if(auth()->user() && auth()->user()->role != 'admin')
                                 <form action="{{ url('/hitungan') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="food_id" value="{{ $food->id }}">
@@ -67,6 +78,7 @@
                                         Add
                                     </button>
                                 </form>
+                                @endif
                             </div>
                         </div>
 
