@@ -50,12 +50,14 @@
                             </div>
                             <div class="flex space-x-2">
                                 <!-- Tombol edit -->
+                                @if(auth()->user() && auth()->user()->role == 'admin')
                                 <form action="{{ url('/editInfoGizi/'.$food->id) }}" method="get">
                                     @csrf
                                     <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-lg shadow">
                                         Edit
                                     </button>
                                 </form>
+                                @endif
                         
                                 <!-- Tombol add -->
                                 <form action="{{ url('/hitungan') }}" method="POST">

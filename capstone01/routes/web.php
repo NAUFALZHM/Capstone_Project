@@ -36,11 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/profil/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profil/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/', [AuthenticatedSessionController::class, 'redirectTo'])->name('/dashboard');
+// Tambah route lain di sini juga, semua butuh login
+//hapus user dari admin
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [AuthenticatedSessionController::class, 'redirectTo'])->name('/dashboard');
-    // Tambah route lain di sini juga, semua butuh login
-    //hapus user dari admin
     Route::delete('/user/{id}', [AdminController::class, 'destroy']);
 });
 
